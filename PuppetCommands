@@ -1,0 +1,20 @@
+
+puppet resource ec2_instance  ==> to see all the ec2 instance configured
+
+
+To stop EC2 instances using puppet. Add the below content in site.pp and execute "puppet apply site.pp"
+
+======
+ec2_instance { 'CreatedByPuppet':
+  ensure              => 'stopped',
+  region              => 'us-west-2',
+}
+
+ec2_instance { 'PuppetAgent2':
+  ensure              => 'stopped',
+  region              => 'us-west-2',
+}
+======
+
+
+
