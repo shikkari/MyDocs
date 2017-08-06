@@ -1,0 +1,20 @@
+docker run -it -d -p 10022:22 -p 3000:3000 -p 4567:4567 -p 5671:5671 -p 15672:15672 -v /sensu:/fromHost --name server hiroakis/docker-sensu-server
+
+docker run -it -d -p 9080:80 -v /sensu:/fromHost --name client -it ubuntu:14.04
+
+apt-get -y update && apt-get -y install wget 
+
+Follow the below instruction
+
+For client configuration
+
+https://github.com/hiroakis/docker-sensu-server
+
+sudo apt-get install -y apache2
+sudo apt-get install software-properties-common python-software-properties
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install ruby2.2
+sudo apt-get install -y ruby-dev build-essential
+sudo gem install sensu-plugin
+sudo touch /etc/sensu/plugins/check-apache.rb && sudo chmod 755 /etc/sensu/plugins/check-apache.rb

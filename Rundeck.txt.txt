@@ -1,0 +1,37 @@
+create a t2.medium instance
+sudo apt-get -y update && apt-get -y install default-jdk
+wget http://dl.bintray.com/rundeck/rundeck-deb/rundeck-2.8.2-1-GA.deb
+sudo dpkg -i rundeck-2.8.2-1-GA.deb
+sudo vi /etc/rundeck/rundeck-config.properties
+Add  http://your_public_dns:4440 to the grails URL section (replace localhost)
+service rundeckd restart
+Access http://public_dns:4440
+create a new project
+Add job
+add steps
+
+Adding multiple rundeck nodes
+-------------------------
+
+
+create a new t2.micro instance
+sudo adduser rundeck --disabled-password
+su - rundeck
+ssh-keygen
+ chown rundeck -R /home/rundeck/
+
+Rundeck server
+
+login to rundeck server
+login as root
+vi /etc/passwd , replace /bin/false with /bin/bash
+su - rundeck
+do a ssh-keygen
+cd .ssh
+ls -ltr
+copy the content of the key file
+
+connect to the node
+go to /home/rundeck/.ssh 
+edit the authorized_keys file
+and copy paste the contents of the masters pubkey file to the authorized_keys file

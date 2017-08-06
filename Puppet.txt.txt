@@ -1,0 +1,35 @@
+PUPPET AGENT INSTALL
+=====================
+sudo apt-get -y update
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+sudo apt-get -y update
+sudo apt-get -y install puppet-agent
+sudo systemctl start puppet
+sudo systemctl enable puppet
+sudo ln -s /opt/puppetlabs/puppet/bin/puppet /usr/local/bin/puppet
+echo "172.31.29.140  puppet" >> /etc/hosts
+sudo puppet agent -t
+
+
+PUPPET SERVER INSTALL
+=====================
+
+sudo apt-get -y update
+curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+sudo apt-get -y update
+sudo apt-get -y install puppetserver
+sudo sed -i.bak 's/2g/3g/g' /etc/default/puppetserver
+
+sudo systemctl start puppetserver
+
+sudo systemctl enable puppetserver
+sudo ln -s /opt/puppetlabs/puppet/bin/puppet /usr/local/bin/puppet
+sudo ln -s /opt/puppetlabs/bin/mco /usr/local/bin/mco
+
+
+
+How to change the default interval from 30 minutes
+
+https://ask.puppet.com/question/2451/how-do-you-change-the-runinterval/

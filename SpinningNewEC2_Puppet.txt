@@ -1,0 +1,52 @@
+Below are the steps to spin an EC2 Instance using Puppet.
+
+Perform the below steps in the Puppet Master Server
+
+(Example commands are for Ubuntu)
+
+1. Install AWS CLI
+
+apt install awscli
+
+2. Configure AWS
+
+aws configure
+
+3. Install gem
+
+apt install ruby
+
+4. Install aws-SDK-core and retries gem
+
+gem install aws-sdk-core
+gem install retries
+gem install aws-sdk-core retries
+
+5. Install a new puppet module (say, aws)
+
+puppet module install puppetlabs-aws
+
+6. To see all the available ec2 instances, run the below
+
+puppet resource ec2_instance
+
+debug:- puppet resource --debug ec2_instance
+
+
+7. Create site.pp file with the below content and execute "puppet apply site.pp". This will spin a new ec2 instance with the provided information.
+
+
+ec2_instance { 'CreatedByPuppet':
+  ensure              => 'running',
+  availability_zone   => 'us-west-2a',
+  ebs_optimized       => 'false',
+  image_id            => 'ami-6e1a0117',
+  instance_type       => 't2.micro',
+  interfaces          => {'eni-fecb4cc0' => {'security_groups' => [{'group_id' => 'sg-23769658', 'group_name' => 'launch-wizard-1'}]}},
+  key_name            => 'DevOpsPair',
+  monitoring          => 'false',
+  region              => 'us-west-2',
+  security_groups     => ['launch-wizard-1'],
+  subnet              => 'Subnet-1',
+  tenancy             => 'default',
+}
