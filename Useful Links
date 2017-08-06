@@ -2,3 +2,5 @@ https://github.com/jenkinsci/pipeline-examples ==> Jenkinsfile + Docker creation
 
 Auto Start/Stop EC2 instances ==> https://schen1628.wordpress.com/2014/02/04/auto-start-and-stop-your-ec2-instances/
 
+http://www.codelord.net/2010/12/19/using-puppet-to-automatically-configure-new-ec2-instances/
+
